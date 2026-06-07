@@ -11,208 +11,185 @@ body {
   align-items: center;
   flex-direction: column;
 
-  font-family: "Segoe UI", system-ui, sans-serif;
+  font-family: "Courier New", monospace;
 
-  background: radial-gradient(circle at top, #1e293b, #020617);
-  color: white;
+  background:
+    radial-gradient(circle at top, #0b1220, #000000),
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 255, 100, 0.03),
+      rgba(0, 255, 100, 0.03) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+
+  color: #00ff88;
 
   overflow-x: hidden;
 }
 
-/* Title */
+/* scanning line effect */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(0, 255, 120, 0.05),
+    transparent
+  );
+
+  animation: scan 4s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+/* TITLE */
 .title {
-  font-size: 3rem;
-  margin-bottom: 20px;
+  font-size: 2.8rem;
+  margin-bottom: 10px;
   text-align: center;
-  letter-spacing: 3px;
+  letter-spacing: 4px;
 
+  color: #00ff88;
   text-transform: uppercase;
-  background: linear-gradient(90deg, #60a5fa, #a78bfa);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 
-  animation: fadeDown 0.8s ease-out;
+  text-shadow:
+    0 0 10px #00ff88,
+    0 0 25px rgba(0, 255, 136, 0.4);
+
+  animation: flicker 2s infinite;
 }
 
 .subtitle {
-  color: #94a3b8;
+  color: rgba(0, 255, 136, 0.7);
   margin-bottom: 40px;
-  font-size: 1.1rem;
+  font-size: 1rem;
   text-align: center;
   max-width: 600px;
-  line-height: 1.6;
-
-  animation: fadeDown 1s ease-out;
 }
 
-/* Countdown container */
+/* COUNTDOWN GRID */
 .countdown {
   display: flex;
-  gap: 25px;
+  gap: 20px;
   flex-wrap: wrap;
   justify-content: center;
-
-  animation: fadeUp 1s ease-out;
 }
 
-/* Box */
+/* BOXES (military panels) */
 .box {
   width: 140px;
   height: 140px;
 
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(14px);
-
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 18px;
+  background: rgba(0, 255, 100, 0.05);
+  border: 1px solid rgba(0, 255, 120, 0.3);
 
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-
-  transition: all 0.25s ease;
-
   position: relative;
-  overflow: hidden;
-}
 
-/* subtle glow effect */
-.box::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at top, rgba(96, 165, 250, 0.15), transparent 60%);
-  opacity: 0;
+  box-shadow:
+    0 0 10px rgba(0, 255, 100, 0.2),
+    inset 0 0 20px rgba(0, 255, 100, 0.05);
+
   transition: 0.3s ease;
 }
 
+/* corner brackets (military UI style) */
+.box::before,
+.box::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #00ff88;
+}
+
+.box::before {
+  top: 8px;
+  left: 8px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.box::after {
+  bottom: 8px;
+  right: 8px;
+  border-left: none;
+  border-top: none;
+}
+
 .box:hover {
-  transform: translateY(-10px) scale(1.03);
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+  transform: scale(1.05);
+  box-shadow:
+    0 0 25px rgba(0, 255, 100, 0.5),
+    inset 0 0 30px rgba(0, 255, 100, 0.1);
 }
 
-.box:hover::before {
-  opacity: 1;
-}
-
-/* Number */
+/* numbers */
 .box h2 {
-  font-size: 3rem;
-  font-weight: 700;
-  margin-bottom: 8px;
+  font-size: 2.8rem;
+  color: #00ff88;
 
-  text-shadow: 0 0 15px rgba(96, 165, 250, 0.3);
+  text-shadow: 0 0 10px #00ff88;
 }
 
-/* Label */
+/* labels */
 .box span {
-  font-size: 0.85rem;
-  letter-spacing: 2px;
+  font-size: 0.75rem;
+  letter-spacing: 3px;
   text-transform: uppercase;
-  color: #94a3b8;
+  color: rgba(0, 255, 136, 0.7);
 }
 
-/* Balloon */
+/* glitch flicker */
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+  52% { opacity: 0.4; }
+  54% { opacity: 1; }
+}
+
+/* BALLON (flare effect) */
 .balloon {
   position: fixed;
   font-size: 2rem;
   pointer-events: none;
-  animation: floatUp 3s ease-in forwards;
+  animation: floatUp 2.5s linear forwards;
   z-index: 9999;
+  color: #00ff88;
 }
 
-/* Animations */
 @keyframes floatUp {
-  0% {
-    transform: translateY(0) scale(0.6);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-350px) scale(1.4);
-    opacity: 0;
-  }
+  0% { transform: translateY(0) scale(0.8); opacity: 1; }
+  100% { transform: translateY(-300px) scale(1.4); opacity: 0; }
 }
 
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes fadeDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Responsive */
+/* MOBILE */
 @media (max-width: 768px) {
-  .countdown {
-    gap: 15px;
-  }
-
-  .box {
-    width: 120px;
-    height: 120px;
-  }
-
-  .box h2 {
-    font-size: 2.3rem;
-  }
-
   .title {
     font-size: 2rem;
-  }
-}
-
-html {
-  -webkit-text-size-adjust: 100%;
-}
-
-@media (max-width: 768px) {
-  body {
-    padding: 20px;
-  }
-
-  .title {
-    font-size: 1.8rem;
-    letter-spacing: 2px;
-  }
-
-  .subtitle {
-    font-size: 0.95rem;
-    margin-bottom: 25px;
-    padding: 0 10px;
-  }
-
-  .countdown {
-    gap: 12px;
   }
 
   .box {
     width: 110px;
     height: 110px;
-    border-radius: 14px;
   }
 
   .box h2 {
     font-size: 2rem;
-  }
-
-  .box span {
-    font-size: 0.75rem;
   }
 }
