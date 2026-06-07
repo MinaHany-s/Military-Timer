@@ -177,3 +177,42 @@ body {
     font-size: 2rem;
   }
 }
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 20px;
+  }
+
+  .title {
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+  }
+
+  .subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+    padding: 0 10px;
+  }
+
+  .countdown {
+    gap: 12px;
+  }
+
+  .box {
+    width: 110px;
+    height: 110px;
+    border-radius: 14px;
+  }
+
+  .box h2 {
+    font-size: 2rem;
+  }
+
+  .box span {
+    font-size: 0.75rem;
+  }
+}
