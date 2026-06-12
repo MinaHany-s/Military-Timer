@@ -86,6 +86,22 @@ body::before {
   justify-content: center;
 }
 
+.elapsed {
+  margin-top: 30px;
+  color: #b2ffbc;
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.elapsed span {
+  display: inline-block;
+  margin-left: 8px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
 /* BOXES (military panels) */
 .box {
   width: 140px;

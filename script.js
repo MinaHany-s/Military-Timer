@@ -1,9 +1,14 @@
 const countDownDate = new Date("2027-05-25T00:00:00").getTime();
+const startDate = new Date("2026-05-25T00:00:00").getTime();
 
+function formatElapsed(ms) {
+    return Math.floor(ms / (1000 * 60 * 60 * 24));
+}
 
 function setDate() {
     const now = new Date().getTime();
     const distance = countDownDate - now;
+    const elapsed = now - startDate;
 
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
 
@@ -25,12 +30,13 @@ function setDate() {
     document.getElementById("hours").textContent = hours;
     document.getElementById("minutes").textContent = minutes;
     document.getElementById("seconds").textContent = seconds;
-}
-setDate()
-setInterval(() => {
-    setDate()
-}, 1000);
 
+    document.getElementById("elapsed").textContent = formatElapsed(elapsed);
+}
+setDate();
+setInterval(() => {
+    setDate();
+}, 1000);
 
 const balloons = ["⏳", "🕰️", "🌙", "⭐", "☁️", "🍂"];
 document.addEventListener("click", (e) => {
